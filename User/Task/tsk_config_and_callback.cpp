@@ -76,6 +76,10 @@ void Agv_Board_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
  * @brief
  *
  */
+int test_steering_wheel_start;
+int test_steering_wheel_dt;
+int test_cnt;
+float test_fps;
 void Agv_Board_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
@@ -83,6 +87,7 @@ void Agv_Board_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
     case (AGV_BOARD_ID):
     case 0x01E:
     {
+				test_fps = FPS_Counter_Update();
         steering_wheel.CAN_RxChassisCallback(CAN_RxMessage);
     }
     break;

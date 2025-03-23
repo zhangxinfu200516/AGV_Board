@@ -4,7 +4,6 @@
 #include "cmsis_os.h" // ::CMSIS:RTOS2
 
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif

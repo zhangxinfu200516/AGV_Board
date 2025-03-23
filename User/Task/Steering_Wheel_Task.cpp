@@ -1,4 +1,6 @@
 #include "Steering_Wheel_Task.h"
+#include "task.h"
+
 
 #ifdef DEBUG_DIR_SPEED
 float test_speed = 0.0;
@@ -220,6 +222,29 @@ void Command_Send(Class_Steering_Wheel *steering_wheel)
     //steering_wheel->Encoder.Briter_Encoder_Set_Current_Pos_Zero_Pos();
     CAN_Send_Data(&hcan1, ENCODER_ID, ENCODER_CAN_DATA, 8); // 发送请求编码器数据
 }
+#ifdef _LUOBI
+int steering_wheel_dt;
+static int steering_wheel_start;
+extern "C" void Steering_Wheel_Task(void *argument)
+{
+    TickType_t xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
+		const TickType_t xFrequency = 4;
+    while (1)
+    {
+        steering_wheel_start = DWT_GetTimeline_us();
+
+        State_Update(&steering_wheel);
+        Command_Update(&steering_wheel);
+        Control_Update(&steering_wheel);
+        Command_Send(&steering_wheel);
+        // osDelay(1);
+        // 250hz
+        vTaskDelayUntil(&xLastWakeTime, xFrequency);
+			 steering_wheel_dt = DWT_GetTimeline_us() - steering_wheel_start;
+    }
+}
+#endif
 
 int steering_wheel_dt;
 static int steering_wheel_start;

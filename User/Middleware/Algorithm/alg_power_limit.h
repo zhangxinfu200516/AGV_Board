@@ -132,11 +132,11 @@ protected:
     // 参数
     float k1_mot = 0.024246;     // 动力电机k1
     float k2_mot = 1.183594;     // 动力电机k2
-    float k3_mot = 9.0f / 8.0f; // 动力电机k3
+    float k3_mot = 6.6f / 8.0f; // 动力电机k3
 
     float k1_dir = 0.024246;     // 转向电机k1
     float k2_dir = 1.183594;     // 转向电机k2
-    float k3_dir = 9.0f / 8.0f; // 转向电机k3
+    float k3_dir = 6.6f / 8.0f; // 转向电机k3
 
     RLS<2> rls_mot{1e-5f, 0.99999f}; // 动力电机RLS
     RLS<2> rls_dir{1e-5f, 0.99999f}; // 转向电机RLS
