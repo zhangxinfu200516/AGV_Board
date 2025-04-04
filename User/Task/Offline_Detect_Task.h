@@ -1,0 +1,16 @@
+#ifndef OFFLINE_DETECT_TASK_H
+#define OFFLINE_DETECT_TASK_H
+
+
+
+
+
+
+
+
+
+
+
+
+
+#endif // !OFFLINE_DETECT_TASK_H
