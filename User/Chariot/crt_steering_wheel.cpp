@@ -78,6 +78,7 @@ void Class_Steering_Wheel::CAN_RxAgvBoardCallback(Struct_CAN_Rx_Buffer *CAN_RxMe
     }
     break;
     }
+    
 }
 
 // 这里要根据帧ID判断是功率数据还是角度速度数据
