@@ -41,11 +41,11 @@ float Class_Power_Limit::Calculate_Theoretical_Power(float omega, float torque, 
 {
 
     float cmdPower = rpm2av(omega) * torque +
-<<<<<<< HEAD
+
                      fabs(rpm2av(omega)) * fabs(rpm2av(omega))* k1 +
-=======
+
                      fabs(rpm2av(omega)) * fabs(rpm2av(omega)) * k1 +
->>>>>>> 74f5c9f ([测试提交ä中é文])
+
                      torque * torque * k2 +
                      k3;
 
@@ -139,7 +139,7 @@ float Class_Power_Limit::Calculate_Limit_K(float omega[], float torque[], float 
         }
         else
         {
-            limit_k = 1;
+            limit_k = 0;
         }
     }
 
