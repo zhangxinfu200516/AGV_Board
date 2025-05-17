@@ -223,8 +223,9 @@ void Control_Update(Class_Steering_Wheel *steering_wheel)
         //预测转向和动力功率
         dir_predict_power = steering_wheel->Power_Limit.Calculate_Theoretical_Power(dir_omega,dir_torque,4);
         mot_predict_power = steering_wheel->Power_Limit.Calculate_Theoretical_Power(mot_omega,mot_torque,4);
+        steering_wheel->Theoretical_Power = dir_predict_power + mot_predict_power;
         // 分配转向和动力功率
-        steering_wheel->Power_Limit.Power_Allocate(power_limit,0.8,dir_predict_power,mot_predict_power,&dir_allocate_power,&mot_allocate_power);
+        steering_wheel->Power_Limit.Power_Allocate(power_limit,0.6f,dir_predict_power,mot_predict_power,&dir_allocate_power,&mot_allocate_power);
         // // 分别跑功率限制
         limit_dir_k = steering_wheel->Power_Limit.Calculate_Limit_K(dir_omega,dir_torque,dir_allocate_power,4);
         limit_mot_k = steering_wheel->Power_Limit.Calculate_Limit_K(mot_omega,mot_torque,mot_allocate_power,4);
@@ -263,10 +264,11 @@ void Command_Send(Class_Steering_Wheel *steering_wheel)
     if(mod5 == 5)
     {
         mod5 = 0;
-        CAN_Send_Data(&hcan2, BOARD_TO_BOARDS_ID_1, AGV_BOARD_CAN_DATA_1, 8); // 发送本轮组电机的转速和扭矩
-        CAN_Send_Data(&hcan2, BOARD_TO_BOARDS_ID_2, AGV_BOARD_CAN_DATA_2, 8); // 发送本轮组电机的pid out 的值
+    CAN_Send_Data(&hcan2, BOARD_TO_BOARDS_ID_1, AGV_BOARD_CAN_DATA_1, 8); // 发送本轮组电机的转速和扭矩
+    CAN_Send_Data(&hcan2, BOARD_TO_BOARDS_ID_2, AGV_BOARD_CAN_DATA_2, 8); // 发送本轮组电机的pid out 的值
     }
     steering_wheel->Encoder.Briter_Encoder_Request_Total_Angle();
+    //steering_wheel->Encoder.Briter_Encoder_Set_Pos_Zero();
     CAN_Send_Data(&hcan1, ENCODER_ID, ENCODER_CAN_DATA, 8); // 发送请求编码器数据
 }
 

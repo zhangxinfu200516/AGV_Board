@@ -96,7 +96,7 @@ public:
     float Now_Omega;    // 轮组当前转速,deg/s
     float Now_Velocity; // 轮组当前速度,m/s
 
-
+    float Theoretical_Power;
     int8_t invert_flag; // 电机方向标志: 0=不反转, 1=反转
     STEERING_WHEEL_ENABLE_T enable_flag=STEERING_WHEEL_SLEEP; // 轮组使能标志
     STEERING_WHEEL_ARC_OPTIMIZATION_T arc_optimization=ENABLE_MINOR_ARC_OPTIMIZEATION; // 优劣弧优化

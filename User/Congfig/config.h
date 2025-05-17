@@ -26,9 +26,9 @@
 
 // 不同舵轮对应宏定义
 //#define AGV_BOARD_A
-//#define AGV_BOARD_B
+#define AGV_BOARD_B
 //#define AGV_BOARD_C
-#define AGV_BOARD_D
+//#define AGV_BOARD_D
 /*--------------------------------------------------------------------------*/
 
 /*轮组数据*/

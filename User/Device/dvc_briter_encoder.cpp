@@ -131,3 +131,15 @@ void Class_Briter_Encoder::Briter_Encoder_Request_Total_Angle(void)
 
     output();
 }
+void Class_Briter_Encoder::Briter_Encoder_Set_Pos_Zero(void)
+{
+    
+    Command.Length = BRITER_ENCODER_DATA_LENGTH_4;
+    Command.Encoder_Address = CAN_ID;
+    Command.Command_Code = SET_CURRENT_POS_ZERO_POS;
+
+    uint8_t trans_data[5];
+    memcpy(Command.Data, &trans_data, 5);
+
+    output();
+}

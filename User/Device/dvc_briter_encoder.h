@@ -130,7 +130,7 @@ public:
     void TIM_Alive_PeriodElapsedCallback();
 
     void Briter_Encoder_Request_Total_Angle(void);
-
+    void Briter_Encoder_Set_Pos_Zero(void);
     inline float Get_Now_Angle();
     inline float Get_Now_Omega();
 
